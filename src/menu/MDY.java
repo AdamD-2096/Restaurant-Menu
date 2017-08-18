@@ -4,14 +4,7 @@ import java.util.Date;
 
 public class MDY extends Date{
     public final long old = 1209600000;
-    public static void main(String[] args){
-        System.out.println("date:");
-        System.out.println(MDY.getMMDDYY());
 
-        System.out.println("\nlong:");
-        System.out.println(MDY.getLong());
-
-    }
     public static String getMMDDYY(){
         MDY date = new MDY();
         int year = date.getYear() - 100;

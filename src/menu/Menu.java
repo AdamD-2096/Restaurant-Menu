@@ -45,6 +45,8 @@ public class Menu {
             desserts.put(title, item);
         }else{
             System.out.println("please pick a valid category and try again");
+            item.setCategory(Restaurant.getCategory());
+            addItem(item);
         }
     }
 

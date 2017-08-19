@@ -31,7 +31,7 @@ public class MenuItem {
     private void setTitle(String title) { this.title = title; }
 
     public String getCategory(){ return this.category; }
-    private void setCategory(String category) { this.category = category; }
+    protected void setCategory(String category) { this.category = category; }
 
     public String getDescription() { return description; }
     private void setDescription(String description) { this.description = description; }
@@ -39,6 +39,7 @@ public class MenuItem {
     public double getPrice() { return price; }
     private void setPrice(double price) { this.price = price; }
 
+    public boolean getNew(){ return isNew; }
     private void setNew(boolean aNew) { isNew = aNew; }
 
     public long getCreationDate() { return creationDate; }

@@ -21,27 +21,13 @@ public class Restaurant {
         Scanner in = new Scanner(System.in);
 
         do{
-            in.nextLine();
             System.out.println("Title:");
             String title = in.nextLine();
             System.out.println("Description:");
             String description = in.nextLine();
             System.out.println("price:");
             double price = in.nextDouble();
-            System.out.println("category: \n0: appetiser\n1: breakfast\n2: lunch\n3: dinner\n4: dessert");
-            int cat = in.nextInt();
-            String category = "";
-            if (cat == 0){
-                category = "appetiser";
-            }else if (cat == 1){
-                category = "breakfast";
-            }else if (cat == 2){
-                category = "lunch";
-            }else if (cat == 3){
-                category = "dinner";
-            }else if (cat == 4){
-                category = "dessert";
-            }
+            String category = getCategory();
             MenuItem item = new MenuItem(title, description, price, category);
             menu.addItem(item);
             System.out.println("options:\n0:quit\n1:add another");
@@ -50,5 +36,24 @@ public class Restaurant {
                 break;
             }
         } while (true);
+    }
+
+    public static String getCategory(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("category: \n0: appetiser\n1: breakfast\n2: lunch\n3: dinner\n4: dessert");
+        int cat = in.nextInt();
+        String category = "";
+        if (cat == 0){
+            category = "appetiser";
+        }else if (cat == 1){
+            category = "breakfast";
+        }else if (cat == 2){
+            category = "lunch";
+        }else if (cat == 3){
+            category = "dinner";
+        }else if (cat == 4){
+            category = "dessert";
+        }
+        return category;
     }
 }

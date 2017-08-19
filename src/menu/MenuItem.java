@@ -1,6 +1,5 @@
 package menu;
 
-import java.util.Date;
 
 public class MenuItem {
     private String title;
@@ -26,11 +25,24 @@ public class MenuItem {
             this.isNew = true;
         }
     }
-    public String getCategory(){
-        return this.category;
-    }
 
-    public String getTitle() {
-        return title;
-    }
+
+    public String getTitle() { return title; }
+    private void setTitle(String title) { this.title = title; }
+
+    public String getCategory(){ return this.category; }
+    private void setCategory(String category) { this.category = category; }
+
+    public String getDescription() { return description; }
+    private void setDescription(String description) { this.description = description; }
+
+    public double getPrice() { return price; }
+    private void setPrice(double price) { this.price = price; }
+
+    private void setNew(boolean aNew) { isNew = aNew; }
+
+    public long getCreationDate() { return creationDate; }
+    private void setCreationDate(long creationDate) { this.creationDate = creationDate; }
+
+    private long getOld() { return old; }
 }

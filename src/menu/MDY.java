@@ -3,7 +3,6 @@ package menu;
 import java.util.Date;
 
 public class MDY extends Date{
-    public final long old = 1209600000;
 
     public static String getMMDDYY(){
         MDY date = new MDY();

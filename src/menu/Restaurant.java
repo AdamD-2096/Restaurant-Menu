@@ -7,13 +7,15 @@ public class Restaurant {
         Menu menu = new Menu();
         Scanner in = new Scanner(System.in);
         while (true){
-            System.out.println("options:\n0:quit\n1:add Items");
+            System.out.println("options:\n0: quit\n1: add Items\n2: look at menu");
             int choice = in.nextInt();
 
             if (choice == 0){
                 break;
             }else if(choice == 1){
                 menu1(menu);
+            }else if(choice == 2){
+                menu2(menu);
             }
         }
     }
@@ -32,6 +34,7 @@ public class Restaurant {
             menu.addItem(item);
             System.out.println("options:\n0:quit\n1:add another");
             int choice = in.nextInt();
+            in.nextLine();
             if (choice == 0){
                 break;
             }
@@ -53,7 +56,23 @@ public class Restaurant {
             category = "dinner";
         }else if (cat == 4){
             category = "dessert";
+        }else{
+            System.out.println("please pick a valid category and try again");
+            category = Restaurant.getCategory();
         }
         return category;
+    }
+    private static void menu2(Menu menu) {
+        String menuItems = "";
+                Scanner in = new Scanner(System.in);
+        System.out.println("category: \n0: full menu\n1: by category");
+        int choice = in.nextInt();
+        if (choice == 0) {
+            menuItems = menu.getMenu();
+        }else if (choice == 1){
+            String category = Restaurant.getCategory();
+            menuItems = menu.getMenu(category);
+        }
+        System.out.println(menuItems);
     }
 }

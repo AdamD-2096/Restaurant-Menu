@@ -1,6 +1,9 @@
 package menu;
 
+
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Menu {
     private HashMap<String, MenuItem> appetisers = new HashMap<>();
@@ -9,8 +12,16 @@ public class Menu {
     private HashMap<String, MenuItem> dinner = new HashMap<>();
     private HashMap<String, MenuItem> desserts = new HashMap<>();
     private String date;
+    private LinkedHashMap<String ,HashMap<String, MenuItem>> menus = new LinkedHashMap<>();
 
-    public Menu(){ updated(); }
+    public Menu(){
+        updated();
+        menus.put("appetisers",appetisers);
+        menus.put("breakfast",breakfast);
+        menus.put("lunch",lunch);
+        menus.put("dinner",dinner);
+        menus.put("desserts",desserts);
+    }
 
     public HashMap<String, MenuItem> getAppetisers() { return appetisers; }
     private void setAppetisers(HashMap<String, MenuItem> appetisers) { this.appetisers = appetisers; }
@@ -48,6 +59,28 @@ public class Menu {
             item.setCategory(Restaurant.getCategory());
             addItem(item);
         }
+        updated();
+    }
+    public String getMenu(){
+        String fullMenu = "";
+
+        for (Map.Entry<String, HashMap<String,MenuItem>> category : menus.entrySet()){
+            fullMenu = fullMenu.concat("\n**************************\n" + category.getKey() + "\n**************************\n");
+            for (Map.Entry<String, MenuItem> menu : category.getValue().entrySet()){
+                MenuItem item = menu.getValue();
+                item.isNew();
+                fullMenu = fullMenu.concat("\n---------------------\n" + item.getTitle() + "\n$" + item.getPrice());
+
+                if (item.getNew()){
+                    fullMenu = fullMenu.concat("\nNEW!!");
+                }
+                fullMenu = fullMenu.concat("\n---------------------\n");
+            }
+        }
+        return fullMenu;
+    }
+    public String getMenu(String category){
+        return "";
     }
 
     private void updated(){

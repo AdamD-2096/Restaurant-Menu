@@ -13,6 +13,7 @@ public class Menu {
     private HashMap<String, MenuItem> desserts = new HashMap<>();
     private String date;
     private LinkedHashMap<String ,HashMap<String, MenuItem>> menus = new LinkedHashMap<>();
+    private int uKey = 0;
 
     public Menu(){
         updated();
@@ -43,7 +44,7 @@ public class Menu {
 
 
     public void addItem(MenuItem item){
-        String title = item.getTitle();
+        String title = item.getTitle().concat(String.valueOf(uKey));
         if(item.getCategory().equals("appetiser")){
             appetisers.put(title, item);
         }else if(item.getCategory().equals("breakfast")){
@@ -59,6 +60,7 @@ public class Menu {
             item.setCategory(Restaurant.getCategory());
             addItem(item);
         }
+        uKey++;
         updated();
     }
     public String getMenu(){

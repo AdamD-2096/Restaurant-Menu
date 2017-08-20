@@ -1,8 +1,5 @@
 package menu;
 
-
-import static com.sun.org.apache.xml.internal.security.keys.keyresolver.KeyResolver.length;
-
 public class MenuItem {
     private String title;
     private String description;

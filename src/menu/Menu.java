@@ -72,8 +72,7 @@ public class Menu {
             for (Map.Entry<String, MenuItem> menu : category.getValue().entrySet()){
                 MenuItem item = menu.getValue();
                 item.isNew();
-                fullMenu = fullMenu.concat("\n---------------------\n" + "item# " +
-                        item.getuKey() + "\n" + item.getTitle() + "\n$" + item.getPrice());
+                fullMenu = fullMenu.concat(item.toString());
 
                 if (item.getNew()){
                     fullMenu = fullMenu.concat("\nNEW!!");
@@ -91,8 +90,7 @@ public class Menu {
 
                     MenuItem item = menu.getValue();
                     item.isNew();
-                    catMenu = catMenu.concat("\n---------------------\n" + "item# " +
-                            item.getuKey() + "\n" + item.getTitle() + "\n$" + item.getPrice());
+                    catMenu = catMenu.concat(item.toString());
 
                     if (item.getNew()) {
                         catMenu = catMenu.concat("\nNEW!!");
@@ -111,12 +109,10 @@ public class Menu {
                 MenuItem item = menu.getValue();
                 item.isNew();
                 if (item.getuKey() == key) {
-                    fullItem = fullItem.concat("item# " +
-                            item.getuKey() + "\n" + item.getTitle() + "\n$" + item.getPrice() +
-                    "\n" + item.getDescription());
+                    fullItem = fullItem.concat(item.toString());
 
                     if (item.getNew()) {
-                        fullItem = fullItem.concat("\nNEW!!");
+                        fullItem = fullItem.concat("\nNEW!!\n");
                     }
                 }
             }

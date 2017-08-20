@@ -1,6 +1,8 @@
 package menu;
 
 
+import static com.sun.org.apache.xml.internal.security.keys.keyresolver.KeyResolver.length;
+
 public class MenuItem {
     private String title;
     private String description;
@@ -8,7 +10,7 @@ public class MenuItem {
     private String category;
     private boolean isNew;
     private long creationDate;
-    public final long old = 1209600000;
+    public static final long old = 1209600000;
     private int uKey = -1;
 
     public MenuItem(String aTitle, String aDescription, double aPrice, String aCategory){
@@ -56,5 +58,46 @@ public class MenuItem {
         }else{
             System.out.println("key has already been set");
         }
+    }
+    @Override
+    public String toString(){
+        String id = String.valueOf(this.uKey);
+        String pr = String.valueOf(this.price);
+
+        return "\nitem#" + id +
+                "\n" + this.title +
+                "\n$" + pr +
+                "\n" + this.description;
+    }
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == this) {
+            return true;
+        }
+
+        if (o == null) {
+            return false;
+        }
+
+        if (o.getClass() != getClass()) {
+            return false;
+        }
+
+        MenuItem mI = (MenuItem) o;
+        if (!mI.getTitle().equals(getTitle()) || !mI.getDescription().equals(getDescription()) || !mI.getCategory().equals(getCategory())){
+            return false;
+        }
+        return (mI.getuKey() == getuKey() && getPrice() == mI.getPrice() && getCreationDate() == mI.getCreationDate());
+    }
+    @Override
+    public int hashCode() {
+        int hash = 67;
+        hash = hash * this.uKey;
+        hash = (int) (hash * this.price);
+        hash = hash + this.description.length();
+        hash = (int) (hash * 1000 * (this.getTitle().length() * this.getCreationDate() / this.description.length() + 13));
+        hash = (hash * (hash + hash)) / (this.uKey * this.uKey + this.uKey);
+        return hash;
     }
 }

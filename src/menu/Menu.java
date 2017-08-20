@@ -6,26 +6,26 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Menu {
-    private HashMap<String, MenuItem> appetisers = new HashMap<>();
+    private HashMap<String, MenuItem> appetiser = new HashMap<>();
     private HashMap<String, MenuItem> breakfast = new HashMap<>();
     private HashMap<String, MenuItem> lunch = new HashMap<>();
     private HashMap<String, MenuItem> dinner = new HashMap<>();
-    private HashMap<String, MenuItem> desserts = new HashMap<>();
+    private HashMap<String, MenuItem> dessert = new HashMap<>();
     private String date;
     private LinkedHashMap<String ,HashMap<String, MenuItem>> menus = new LinkedHashMap<>();
     private int uKey = 0;
 
     public Menu(){
         updated();
-        menus.put("appetisers",appetisers);
+        menus.put("appetiser",appetiser);
         menus.put("breakfast",breakfast);
         menus.put("lunch",lunch);
         menus.put("dinner",dinner);
-        menus.put("desserts",desserts);
+        menus.put("dessert",dessert);
     }
 
-    public HashMap<String, MenuItem> getAppetisers() { return appetisers; }
-    private void setAppetisers(HashMap<String, MenuItem> appetisers) { this.appetisers = appetisers; }
+    public HashMap<String, MenuItem> getAppetisers() { return appetiser; }
+    private void setAppetisers(HashMap<String, MenuItem> appetisers) { this.appetiser = appetisers; }
 
     public HashMap<String, MenuItem> getBreakfast() { return breakfast; }
     private void setBreakfast(HashMap<String, MenuItem> breakfast) { this.breakfast = breakfast; }
@@ -36,8 +36,8 @@ public class Menu {
     public HashMap<String, MenuItem> getDinner() { return dinner; }
     private void setDinner(HashMap<String, MenuItem> dinner) { this.dinner = dinner; }
 
-    public HashMap<String, MenuItem> getDesserts() { return desserts; }
-    private void setDesserts(HashMap<String, MenuItem> desserts) { this.desserts = desserts; }
+    public HashMap<String, MenuItem> getDesserts() { return dessert; }
+    private void setDesserts(HashMap<String, MenuItem> desserts) { this.dessert = desserts; }
 
     public String getDate() { return date; }
     private void setDate(String date) { this.date = date; }
@@ -46,7 +46,7 @@ public class Menu {
     public void addItem(MenuItem item){
         String title = item.getTitle().concat(String.valueOf(uKey));
         if(item.getCategory().equals("appetiser")){
-            appetisers.put(title, item);
+            appetiser.put(title, item);
         }else if(item.getCategory().equals("breakfast")){
             breakfast.put(title, item);
         }else if(item.getCategory().equals("lunch")){
@@ -54,7 +54,7 @@ public class Menu {
         }else if(item.getCategory().equals("dinner")){
             dinner.put(title, item);
         }else if(item.getCategory().equals("dessert")){
-            desserts.put(title, item);
+            dessert.put(title, item);
         }else{
             System.out.println("please pick a valid category and try again");
             item.setCategory(Restaurant.getCategory());
@@ -81,8 +81,24 @@ public class Menu {
         }
         return fullMenu;
     }
-    public String getMenu(String category){
-        return "";
+    public String getMenu(String aCategory){
+        String catMenu = "\n**************************\n" + aCategory + "\n**************************\n";
+        for (Map.Entry<String, HashMap<String,MenuItem>> category : menus.entrySet()){
+            if(category.getKey().equals(aCategory)) {
+                for (Map.Entry<String, MenuItem> menu : category.getValue().entrySet()) {
+
+                    MenuItem item = menu.getValue();
+                    item.isNew();
+                    catMenu = catMenu.concat("\n---------------------\n" + item.getTitle() + "\n$" + item.getPrice());
+
+                    if (item.getNew()) {
+                        catMenu = catMenu.concat("\nNEW!!");
+                    }
+                    catMenu = catMenu.concat("\n---------------------\n");
+                }
+            }
+        }
+        return catMenu;
     }
 
     private void updated(){

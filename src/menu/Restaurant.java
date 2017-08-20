@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Restaurant {
     public static void main(String[] args){
         Menu menu = new Menu();
-        makemenu(menu);
+        makeMenu(menu);
         Scanner in = new Scanner(System.in);
         while (true){
             System.out.println("options:\n0: quit\n1: add Items\n2: look at menu");
@@ -33,7 +33,7 @@ public class Restaurant {
             String category = getCategory();
             MenuItem item = new MenuItem(title, description, price, category);
             menu.addItem(item);
-            System.out.println("options:\n0:quit\n1:add another");
+            System.out.println("options:\n0:back\n1:add another");
             int choice = in.nextInt();
             in.nextLine();
             if (choice == 0){
@@ -66,17 +66,25 @@ public class Restaurant {
     private static void menu2(Menu menu) {
         String menuItems = "";
                 Scanner in = new Scanner(System.in);
-        System.out.println("category: \n0: full menu\n1: by category");
+        System.out.println("category: \n0: full menu\n1: by category\n2: individual item");
         int choice = in.nextInt();
         if (choice == 0) {
             menuItems = menu.getMenu();
         }else if (choice == 1){
             String category = Restaurant.getCategory();
             menuItems = menu.getMenu(category);
+        }else if (choice == 2){
+            System.out.println("enter the item number to view item, or 0 to go back");
+            int itemNumber = in.nextInt();
+            if (itemNumber == 0){
+                menu2(menu);
+            }else{
+                menuItems = menu.getItem(itemNumber);
+            }
         }
         System.out.println(menuItems);
     }
-    private static void makemenu(Menu menu){
+    private static void makeMenu(Menu menu){
         MenuItem item = new MenuItem("crepes","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.60,"breakfast");
         menu.addItem(item);
         item = new MenuItem("eggs and ham","warm fluffy hammy. this mouthwatering dish of joy that was cracked open and full of joy is just what your looking for.",5.50,"breakfast");

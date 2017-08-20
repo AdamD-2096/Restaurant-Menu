@@ -9,6 +9,7 @@ public class MenuItem {
     private boolean isNew;
     private long creationDate;
     public final long old = 1209600000;
+    private int uKey = -1;
 
     public MenuItem(String aTitle, String aDescription, double aPrice, String aCategory){
         this.title = aTitle;
@@ -46,4 +47,14 @@ public class MenuItem {
     private void setCreationDate(long creationDate) { this.creationDate = creationDate; }
 
     private long getOld() { return old; }
+
+    public int getuKey() { return uKey; }
+
+    protected void setuKey(int aKey){
+        if (this.uKey == -1) {
+            this.uKey = aKey;
+        }else{
+            System.out.println("key has already been set");
+        }
+    }
 }

@@ -13,7 +13,7 @@ public class Menu {
     private HashMap<String, MenuItem> dessert = new HashMap<>();
     private String date;
     private LinkedHashMap<String ,HashMap<String, MenuItem>> menus = new LinkedHashMap<>();
-    private int uKey = 0;
+    private int uKey = 1;
 
     public Menu(){
         updated();
@@ -60,6 +60,7 @@ public class Menu {
             item.setCategory(Restaurant.getCategory());
             addItem(item);
         }
+        item.setuKey(uKey);
         uKey++;
         updated();
     }
@@ -71,7 +72,8 @@ public class Menu {
             for (Map.Entry<String, MenuItem> menu : category.getValue().entrySet()){
                 MenuItem item = menu.getValue();
                 item.isNew();
-                fullMenu = fullMenu.concat("\n---------------------\n" + item.getTitle() + "\n$" + item.getPrice());
+                fullMenu = fullMenu.concat("\n---------------------\n" + "item# " +
+                        item.getuKey() + "\n" + item.getTitle() + "\n$" + item.getPrice());
 
                 if (item.getNew()){
                     fullMenu = fullMenu.concat("\nNEW!!");
@@ -89,7 +91,8 @@ public class Menu {
 
                     MenuItem item = menu.getValue();
                     item.isNew();
-                    catMenu = catMenu.concat("\n---------------------\n" + item.getTitle() + "\n$" + item.getPrice());
+                    catMenu = catMenu.concat("\n---------------------\n" + "item# " +
+                            item.getuKey() + "\n" + item.getTitle() + "\n$" + item.getPrice());
 
                     if (item.getNew()) {
                         catMenu = catMenu.concat("\nNEW!!");
@@ -99,6 +102,26 @@ public class Menu {
             }
         }
         return catMenu;
+    }
+
+    public String getItem(int key){
+        String fullItem = "";
+        for (Map.Entry<String, HashMap<String,MenuItem>> category : menus.entrySet()){
+            for (Map.Entry<String, MenuItem> menu : category.getValue().entrySet()){
+                MenuItem item = menu.getValue();
+                item.isNew();
+                if (item.getuKey() == key) {
+                    fullItem = fullItem.concat("item# " +
+                            item.getuKey() + "\n" + item.getTitle() + "\n$" + item.getPrice() +
+                    "\n" + item.getDescription());
+
+                    if (item.getNew()) {
+                        fullItem = fullItem.concat("\nNEW!!");
+                    }
+                }
+            }
+        }
+        return fullItem;
     }
 
     private void updated(){

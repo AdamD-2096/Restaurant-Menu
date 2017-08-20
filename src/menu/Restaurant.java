@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Restaurant {
     public static void main(String[] args){
         Menu menu = new Menu();
+        makemenu(menu);
         Scanner in = new Scanner(System.in);
         while (true){
             System.out.println("options:\n0: quit\n1: add Items\n2: look at menu");
@@ -45,7 +46,7 @@ public class Restaurant {
         Scanner in = new Scanner(System.in);
         System.out.println("category: \n0: appetiser\n1: breakfast\n2: lunch\n3: dinner\n4: dessert");
         int cat = in.nextInt();
-        String category = "";
+        String category;
         if (cat == 0){
             category = "appetiser";
         }else if (cat == 1){
@@ -74,5 +75,39 @@ public class Restaurant {
             menuItems = menu.getMenu(category);
         }
         System.out.println(menuItems);
+    }
+    private static void makemenu(Menu menu){
+        MenuItem item = new MenuItem("crepes","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.60,"breakfast");
+        menu.addItem(item);
+        item = new MenuItem("eggs and ham","warm fluffy hammy. this mouthwatering dish of joy that was cracked open and full of joy is just what your looking for.",5.50,"breakfast");
+        menu.addItem(item);
+        item = new MenuItem("breakfast burrito","soft warm savory. this is so mouthwatering you might drown. can be ordered with any house meat.",6.00,"breakfast");
+        menu.addItem(item);
+        item = new MenuItem("spinach artichoke dip","creamy and so delicious. this mouthwatering dip of heaven is just what you need before your meal.",5.50,"appetiser");
+        menu.addItem(item);
+        item = new MenuItem("donuts","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.50,"appetiser");
+        menu.addItem(item);
+        item = new MenuItem("donuts","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.50,"appetiser");
+        menu.addItem(item);
+        item = new MenuItem("sandwich","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.50,"lunch");
+        menu.addItem(item);
+        item = new MenuItem("summer mac","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.50,"lunch");
+        menu.addItem(item);
+        item = new MenuItem("super salad","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.50,"lunch");
+        menu.addItem(item);
+        item = new MenuItem("burgers","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.50,"dinner");
+        menu.addItem(item);
+        item = new MenuItem("steak","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.50,"dinner");
+        menu.addItem(item);
+        item = new MenuItem("loaded tators","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.50,"dinner");
+        menu.addItem(item);
+        item = new MenuItem("best friend","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.50,"dinner");
+        menu.addItem(item);
+        item = new MenuItem("shake","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.50,"dessert");
+        menu.addItem(item);
+        item = new MenuItem("shake","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.50,"dessert");
+        menu.addItem(item);
+        item = new MenuItem("crepes","soft warm crisp sweet. these mouthwatering bundles of joy are just what your looking for.",5.50,"dessert");
+        menu.addItem(item);
     }
 }
